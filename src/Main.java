@@ -3,34 +3,40 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         List<Integer> numbers = new ArrayList<>();
-        for (int i = 1; i < 10; i++){
+        for (int i = 1; i < 10; i++) {
             numbers.add(i);
         }
         Collections.shuffle(numbers);
 
         String pcNumber1 = "";
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++) {
             pcNumber1 += numbers.get(i).toString();
         }
 
-        //converting pcNumber1 to ArrayList
-        String[] pcNumber1Str =pcNumber1.split("");
+        //Converting pcNumber1 to ArrayList
+        String[] pcNumber1Str = pcNumber1.split("");
         List<String> pcNumber1Al = new ArrayList<String>();
         pcNumber1Al = Arrays.asList(pcNumber1Str);
-       Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-       System.out.println("PLayer1, enter a four-digit number: ");
-       int number1 = sc.nextInt();
-       String number1ToString = String.valueOf(number1);
+        System.out.println("PLayer1, enter a four-digit number: ");
+        int number1 = sc.nextInt();
+        String number1ToString = String.valueOf(number1);
 
-       //Converting first player's number to ArrayList
-       String[] number1Str = number1ToString.split("");
-       List<String> number1Al = new ArrayList<String>();
-       number1Al = Arrays.asList(number1Str);
+        //Converting first player's number to ArrayList
+        String[] number1Str = number1ToString.split("");
+        List<String> number1Al = new ArrayList<String>();
+        number1Al = Arrays.asList(number1Str);
 
-
-
-
-
+        //Checking if a digit of the player 1's number is in the computer number
+        int count = 0;
+        for (int i = 0; i < number1Al.size(); i++) {
+            String digit1 = number1Al.get(i);
+            boolean digit1Existence = pcNumber1Al.contains(digit1);
+            if (digit1Existence = true) {
+                count++;
+            }
+        }
+        System.out.println("Player 1, you have " + count + " cows.");
     }
 }
