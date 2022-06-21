@@ -33,10 +33,19 @@ public class Main {
         for (int i = 0; i < number1Al.size(); i++) {
             String digit1 = number1Al.get(i);
             boolean digit1Existence = pcNumber1Al.contains(digit1);
-            if (digit1Existence = true) {
+            if(digit1Existence == true){
                 count++;
             }
         }
-        System.out.println("Player 1, you have " + count + " cows.");
+        System.out.print("Player 1, you have " + count + " cows ");
+        int count2 = 0;
+        for (int i = 0; i < pcNumber1Al.size(); i++){
+            for (int j = 0; j < number1Al.size(); j++){
+                if(pcNumber1Al.get(i).equals(number1Al.get(j))){
+                    count++;
+                }
+            }
+        }
+        System.out.print("and " + count2 + " bulls.");
     }
 }
