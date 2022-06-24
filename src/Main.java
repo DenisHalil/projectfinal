@@ -1,6 +1,68 @@
 import java.util.*;
 
 public class Main {
+    public static void printFirstPlayerPart(List<String> pcNumber1Al, int number1, int count2){
+        String number1ToString = String.valueOf(number1);
+
+        //Converting first player's number to ArrayList
+        String[] number1Str = number1ToString.split("");
+        List<String> number1Al = new ArrayList<String>();
+        number1Al = Arrays.asList(number1Str);
+
+        //Checking if a digit of the player 1's number is in the first computer number
+        int count = 0;
+        for (int i = 0; i < number1Al.size(); i++) {
+            String digit1 = number1Al.get(i);
+            boolean digit1Existence = pcNumber1Al.contains(digit1);
+            if (digit1Existence == true) {
+                count++;
+            }
+        }
+        System.out.print("Player 1, you have " + count + " cows ");
+
+        //Checking positions of digits in two arrays
+        count2 = 0;
+        for (int i = 0; i < pcNumber1Al.size(); i++) {
+            if (pcNumber1Al.get(i).equals(number1Al.get(i))) {
+                count2++;
+            }
+        }
+        System.out.print("and " + count2 + " bulls.");
+        System.out.println();
+        System.out.println();
+
+    }
+
+    public static void printSecondPlayerPart(List<String> pcNumber2Al, int number2, int countSecond2){
+        String number2ToString = String.valueOf(number2);
+
+        //Converting player 2's number to ArrayList
+        String[] number2Str = number2ToString.split("");
+        List<String> number2Al = new ArrayList<String>();
+        number2Al = Arrays.asList(number2Str);
+
+        //Checking if a digit of the player 2's number is in the second computer number
+        int countSecond = 0;
+        for (int i = 0; i < number2Al.size(); i++) {
+            String digit2 = number2Al.get(i);
+            boolean digit2Existence = pcNumber2Al.contains(digit2);
+            if (digit2Existence == true) {
+                countSecond++;
+            }
+        }
+        System.out.print("Player 2, you have " + countSecond + " cows ");
+
+        //Checking positions of digits in two arrays
+        countSecond2 = 0;
+        for (int i = 0; i < pcNumber2Al.size(); i++) {
+            if (pcNumber2Al.get(i).equals(number2Al.get(i))) {
+                countSecond2++;
+            }
+        }
+        System.out.print("and " + countSecond2 + " bulls.");
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         //Generating first computer number1
         List<Integer> numbers = new ArrayList<>();
@@ -37,36 +99,8 @@ public class Main {
 
             System.out.println("PLayer 1, enter a four-digit number: ");
             int number1 = sc.nextInt();
-            String number1ToString = String.valueOf(number1);
-
-            //Converting first player's number to ArrayList
-            String[] number1Str = number1ToString.split("");
-            List<String> number1Al = new ArrayList<String>();
-            number1Al = Arrays.asList(number1Str);
-
-            //Checking if a digit of the player 1's number is in the first computer number
-            int count = 0;
-            for (int i = 0; i < number1Al.size(); i++) {
-                String digit1 = number1Al.get(i);
-                boolean digit1Existence = pcNumber1Al.contains(digit1);
-                if (digit1Existence == true) {
-                    count++;
-                }
-            }
-            System.out.print("Player 1, you have " + count + " cows ");
-
-            //Checking positions of digits in two arrays
             int count2 = 0;
-            for (int i = 0; i < pcNumber1Al.size(); i++) {
-                for (int j = 0; j < number1Al.size(); j++) {
-                    if (pcNumber1Al.get(i).equals(number1Al.get(j))) {
-                        count++;
-                    }
-                }
-            }
-            System.out.print("and " + count2 + " bulls.");
-            System.out.println();
-            System.out.println();
+            printFirstPlayerPart(pcNumber1Al, number1, count2);
 
             //PLayer 2's part!
             //Converting second computer number to ArrayList
@@ -76,37 +110,15 @@ public class Main {
 
             System.out.println("PLayer 2, enter a four-digit number: ");
             int number2 = sc.nextInt();
-            String number2ToString = String.valueOf(number2);
-
-            //Converting player 2's number to ArrayList
-            String[] number2Str = number2ToString.split("");
-            List<String> number2Al = new ArrayList<String>();
-            number2Al = Arrays.asList(number2Str);
-
-            //Checking if a digit of the player 2's number is in the second computer number
-            int countSecond = 0;
-            for (int i = 0; i < number2Al.size(); i++) {
-                String digit2 = number2Al.get(i);
-                boolean digit2Existence = pcNumber2Al.contains(digit2);
-                if (digit2Existence == true) {
-                    countSecond++;
-                }
-            }
-            System.out.print("Player 2, you have " + countSecond + " cows ");
-
-            //Checking positions of digits in two arrays
             int countSecond2 = 0;
-            for (int i = 0; i < pcNumber2Al.size(); i++) {
-                for (int j = 0; j < number2Al.size(); j++) {
-                    if (pcNumber2Al.get(i).equals(number2Al.get(j))) {
-                        countSecond2++;
-                    }
-                }
-            }
-            System.out.print("and " + countSecond2 + " bulls.");
-            System.out.println();
-            if ((number1Al.equals(pcNumber1Al) == true) || (number2Al.equals(pcNumber2Al) == true))
+            printSecondPlayerPart(pcNumber2Al, number2, countSecond2);
+
+            String number1String = String.valueOf(number1);
+            String number2String = String.valueOf(number2);
+            if (number1String.equals(pcNumber1Str) == true || number2String.equals(pcNumber2Str) == true) {
+                System.out.println("Game finished!");
                 break;
+            }
         }
 
 
